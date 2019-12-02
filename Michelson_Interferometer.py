@@ -23,9 +23,15 @@ while i < float(len(in_var_sigma_Ls_list)):
     var_sigma_list[i]   = in_var_sigma_Ls_list[i]/in_var_Ls_turns_list[i]
     i                   = i+1
 
-c = sum(var_sigma_list)/len(var_sigma_list)
+
+
+# 取sigma平均值，c将所有的误差视为常数
+c = sum(in_var_sigma_Ls_list)/len(in_var_sigma_Ls_list)
+
+# 去极端值
 in_var_Ls_turns_list.remove(max(var_sigma_list ))
 in_var_Ls_turns_list.remove(min(var_sigma_list ))
+
 
 std_Ls_turns            = 0.10247 #float(staticstics.stdev(in_var_Ls_turns_list))
 sigma_Ls_turns          = 0.045825757
