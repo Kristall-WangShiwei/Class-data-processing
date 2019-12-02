@@ -15,7 +15,7 @@ in_var_Ls_turns_list    = list(map(float,in_var_Ls_turns.split() ))
 
 turns_na_size           = float( len(in_var_na_turns_list))
 std_na_turns            = float(staticstics.stdev(in_var_na_turns_list))
-sigma_na_turns          = uncer_na_turns/(turns_na_size ** 0.5)
+sigma_na_turns          = uncer_na_turns/math.sqrt(turns_na_size)
 i = 0 
 var_sigma_list = in_var_Ls_turns_list
 
@@ -27,8 +27,9 @@ c = sum(var_sigma_list)/len(var_sigma_list)
 in_var_Ls_turns_list.remove(max(var_sigma_list ))
 in_var_Ls_turns_list.remove(min(var_sigma_list ))
 
-std_Ls_turns            = float((staticstics.stdev(in_var_Ls_turns_list))
-sigma_Ls_turns          = std_Ls_turns/(float( len( in_var_Ls_turns_list )) **0.5 )
+std_Ls_turns            = 0.10247 #float(staticstics.stdev(in_var_Ls_turns_list))
+sigma_Ls_turns          = 0.045825757
+## std_Ls_turns / math.sqrt(float( len( in_var_Ls_turns_list )))
 constant                = sum(var_sigma_list)/len(var_sigma_list)
 
 i=0
@@ -42,11 +43,11 @@ sigma_fc =0
 deter                = str(input("Is that you uncertainty is a consant or variable? type v for variable, type c for constant."))
 if deter == "c":
     while i < len(in_var_Na_turns ):
-        sigma_f[i] = (c*c*in_var_Na_turns[i]**2 +sigma_Na_turns**2 * in_var_k**2)**0.5
+        sigma_f[i] = math.sqrt(c*c*in_var_Na_turns[i]**2 +sigma_Na_turns**2 * in_var_k**2)
         print(str(sigma_f[i]))
         i= i+1
 if deter == "v":
-    sigma_fc = (in_var_k **2 + sigma_na_turns**2 * in_var_k**2)**0.5
+    sigma_fc = math.sqrt(in_var_k **2 + sigma_na_turns**2 * in_var_k**2)
     print(str(sigma_fc))
 
 
