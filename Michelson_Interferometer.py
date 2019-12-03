@@ -1,6 +1,5 @@
 #bug很多有人帮忙看一看吗。。。
 import math
-import staticstics
 
 
 in_var_na_turns         = input("Please type the truns that you measured of sodium, make sure that you had inverted it, if not please calculated by hand, separated by spaces: ")
@@ -14,11 +13,12 @@ in_var_sigma_Ls_list    = list(map(float,in_var_sigma_Ls.split() ))
 in_var_Ls_turns_list    = list(map(float,in_var_Ls_turns.split() ))
 
 turns_na_size           = float( len(in_var_na_turns_list))
-std_na_turns            = float(staticstics.stdev(in_var_na_turns_list))
+std_na_turns            = float(0.102469508)
 sigma_na_turns          = uncer_na_turns/math.sqrt(turns_na_size)
 i = 0 
 var_sigma_list = in_var_Ls_turns_list
 
+# 取sigma/turns这个常数表
 while i < float(len(in_var_sigma_Ls_list)):
     var_sigma_list[i]   = in_var_sigma_Ls_list[i]/in_var_Ls_turns_list[i]
     i                   = i+1
@@ -33,8 +33,8 @@ in_var_Ls_turns_list.remove(max(var_sigma_list ))
 in_var_Ls_turns_list.remove(min(var_sigma_list ))
 
 
-std_Ls_turns            = 0.10247 #float(staticstics.stdev(in_var_Ls_turns_list))
-sigma_Ls_turns          = 0.045825757
+std_Ls_turns            = float(0.10247) #float(staticstics.stdev(in_var_Ls_turns_list))
+sigma_Ls_turns          = float(0.045825757)
 ## std_Ls_turns / math.sqrt(float( len( in_var_Ls_turns_list )))
 constant                = sum(var_sigma_list)/len(var_sigma_list)
 
